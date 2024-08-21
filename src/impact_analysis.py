@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from utils import load_data, ROLES, IMPACT_DJ, COL_TALK_FREQUENCY, COL_TALK_DURATION, COL_AGE, COL_GENDER, COL_ATTENDANCE, \
+from src.utils import load_data, ROLES, IMPACT_DJ, COL_TALK_FREQUENCY, COL_TALK_DURATION, COL_AGE, COL_GENDER, COL_ATTENDANCE, \
     COL_EXPERIENCE, COL_IMPACT_EXPERIENCE, COL_IMPACT_DJ, COL_IMPACT_ATMOSPHERE, COL_TALK_PERCEPTION, TALK_FREQUENCY,\
     TALK_DURATION
 
@@ -30,7 +30,7 @@ def app():
             )
             fig.update_traces(
                 textposition='inside',
-                textinfo='percent+label',
+                textinfo='percent',
                 hovertemplate="Impact: %{label}<br>Participants: %{value}<br>Percentage: %{percent}"
             )
             st.plotly_chart(fig, use_container_width=True)
@@ -101,7 +101,7 @@ def app():
     # Radio button for selecting demographic factor (in the left column)
     with col1:
         demographic_factor = st.radio(
-            "Select demographic factor:",
+            "Select breakdown factor:",
             ["Talking Frequency", "Talking Duration", "Attendance Frequency", "Experience", "Age", "Gender"],
             key="demographic_factor_impact"
         )
@@ -192,16 +192,13 @@ def app():
 
     # Add an explanation for people without analytical background
     st.markdown("""
-    ### Understanding the Impact Analysis
+    ### What am I seeing
 
-    This section of the dashboard analyzes how talking at rave events impacts different aspects:
+    This page analyzes how talking on the dancefloor impacts different aspects:
 
     1. **Overall Impact**: The pie charts show the general impact on personal experience, DJ performance, and event atmosphere.
     2. **Impact by Role**: The heatmap displays how different roles perceive the impact of talking.
-    3. **Impact by Demographic Factor**: The bar chart breaks down the impact based on various demographic factors.
+    3. **Impact by Demographic Factor**: The bar chart breaks down the impact based on various factors.
 
-    Key points to remember:
-    - Hover over charts for more detailed information.
-    - Use the radio buttons to explore different impacts and demographic factors.
-    - The summary statistics highlight the most positive and negative impacts for the selected demographic factor.
+    Hover over charts for more detailed information and se the radio buttons to explore different impacts and breakdown factors.
    """)

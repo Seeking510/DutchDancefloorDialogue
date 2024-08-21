@@ -1,9 +1,7 @@
 import streamlit as st
-import pandas as pd
 import plotly.express as px
-from utils import load_data, get_order, COL_TALK_FREQUENCY, COL_TALK_DURATION, COL_AGE, COL_GENDER, COL_ATTENDANCE, \
-    COL_EXPERIENCE, COL_IMPACT_EXPERIENCE, COL_IMPACT_DJ, COL_IMPACT_ATMOSPHERE, COL_TALK_PERCEPTION, TALK_FREQUENCY,\
-    TALK_DURATION, COL_QUIET_IMPORTANCE, COL_LIKELIHOOD_INTERVENE
+from src.utils import load_data, COL_AGE, COL_GENDER, COL_ATTENDANCE, \
+    COL_EXPERIENCE, COL_QUIET_IMPORTANCE, COL_LIKELIHOOD_INTERVENE
 
 def app():
     df = load_data()
@@ -121,13 +119,13 @@ def app():
 
     # Add explanation for people without analytical background
     st.markdown("""
-    ### Understanding the Analysis
+    ### What am I seeing?
 
-    This section examines the relationship between the importance of a quiet environment and the likelihood of intervention in noisy situations at rave events.
+    This page examines the relationship between the importance of a quiet environment and the likelihood of intervention.
 
     1. **Heatmap**: 
        - The x-axis shows how important a quiet environment is to participants (1 = not important, 5 = very important).
-       - The y-axis shows how likely participants are to intervene in noisy situations (1 = unlikely, 5 = very likely).
+       - The y-axis shows how likely participants are to intervene if a conversation it's disturbing to them (1 = unlikely, 5 = very likely).
        - Darker colors indicate more participants in that category.
        - Hover over cells to see exact counts and percentages.
 
@@ -141,5 +139,4 @@ def app():
        - Different colors represent different demographic groups.
        - Use the radio button to explore different demographic factors.
 
-    This analysis can help event organizers understand how different groups value quiet environments and their willingness to address noise issues.
     """)

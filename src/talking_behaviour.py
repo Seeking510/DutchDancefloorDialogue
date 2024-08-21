@@ -1,7 +1,6 @@
 import streamlit as st
-import pandas as pd
 import plotly.express as px
-from utils import load_data, COL_TALK_FREQUENCY, COL_TALK_DURATION, COL_TALK_PERCEPTION, TALK_FREQUENCY, TALK_DURATION, TALK_PERCEPTION
+from src.utils import load_data, COL_TALK_FREQUENCY, COL_TALK_DURATION, COL_TALK_PERCEPTION, TALK_FREQUENCY, TALK_DURATION, TALK_PERCEPTION
 
 def app():
     st.header("Talking Behavior Summary")
@@ -54,11 +53,11 @@ def app():
 
     # Add an explanation for people without analytical background
     st.markdown("""
-    ### Understanding the Talking Behavior Summary
+    ### What am I seeing?
 
-    This section of the dashboard provides insights into how participants interact through conversations at rave events:
+    This pages provides insights into how participants interact through conversations at events:
 
-    1. **Conversation Frequency**: Shows how often people engage in conversations during events.
+    1. **Conversation Frequency**: Shows how often people engage in conversations on the dancefloor.
     2. **Conversation Duration**: Illustrates the typical length of conversations when they occur.
     3. **Perception of Talking on Dancefloor**: Reflects how acceptable participants find talking on the dancefloor.
 

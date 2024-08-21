@@ -1,12 +1,9 @@
 import streamlit as st
 import plotly.express as px
-from utils import load_data, COL_AGE, COL_GENDER, COL_ATTENDANCE, COL_EXPERIENCE
+from src.utils import load_data, COL_AGE, COL_GENDER, COL_ATTENDANCE, COL_EXPERIENCE
+
 
 def app():
-    import streamlit as st
-    import pandas as pd
-    import plotly.express as px
-
     st.header("Demographic Summary")
     df = load_data()
 
@@ -40,7 +37,7 @@ def app():
         )
         fig_gender.update_traces(
             textposition='inside',
-            textinfo='percent+label',
+            textinfo='percent',
             hovertemplate="Gender: %{label}<br>Participants: %{value}<br>Percentage: %{percent}"
         )
         st.plotly_chart(fig_gender, use_container_width=True)
@@ -55,7 +52,7 @@ def app():
         )
         fig_attendance.update_traces(
             textposition='inside',
-            textinfo='percent+label',
+            textinfo='percent',
             hovertemplate="Frequency: %{label}<br>Participants: %{value}<br>Percentage: %{percent}"
         )
         st.plotly_chart(fig_attendance, use_container_width=True)
@@ -94,14 +91,14 @@ def app():
 
     # Add an explanation for people without analytical background
     st.markdown("""
-    ### Understanding the Dashboard
+    ### What am I seeing?
 
-    This dashboard provides a summary of our survey participants:
+    This page provides a summary of our survey participants:
 
     1. **Age Distribution**: Shows how many participants are in each age group.
     2. **Gender Distribution**: Displays the proportion of participants by gender.
-    3. **Attendance Frequency**: Illustrates how often participants attend rave events.
-    4. **Years of Experience**: Indicates the level of experience among participants.
+    3. **Attendance Frequency**: Illustrates how often participants attend raves/electronic music events.
+    4. **Years of Experience**: Indicates the years of experience among participants.
     5. **Roles in Rave Scene**: Highlights the various roles participants play in the rave community.
 
     You can hover over any part of the charts to see more detailed information.

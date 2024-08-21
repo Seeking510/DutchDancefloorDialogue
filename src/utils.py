@@ -49,7 +49,7 @@ IMPACT_ATMOSPHERE = ['Yes, positively', 'Yes, negatively', 'No effect']
 # Load the data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('Dancefloor_taliking.csv')
+    df = pd.read_csv('data/Dancefloor_taliking.csv')
 
     # Convert categorical columns to ordered categories
     for col in [COL_AGE, COL_GENDER, COL_ATTENDANCE, COL_EXPERIENCE, COL_TALK_FREQUENCY,
@@ -58,6 +58,7 @@ def load_data():
         df[col] = pd.Categorical(df[col], categories=get_order(col), ordered=True)
 
     return df
+
 
 # Helper function to get the appropriate order for a given column
 def get_order(column):

@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from utils import load_data, COL_TALK_FREQUENCY, COL_TALK_DURATION, COL_AGE, COL_GENDER, COL_ATTENDANCE, \
+from src.utils import load_data, COL_TALK_FREQUENCY, COL_TALK_DURATION, COL_AGE, COL_GENDER, COL_ATTENDANCE, \
     COL_EXPERIENCE, COL_IMPACT_EXPERIENCE, COL_IMPACT_DJ, COL_IMPACT_ATMOSPHERE, COL_TALK_PERCEPTION, TALK_FREQUENCY, \
     TALK_DURATION
 
@@ -51,8 +51,7 @@ def app():
     df['YAPPING_FACTOR'] = df.apply(calculate_yapping_factor, axis=1)
 
     st.write("""
-    Welcome to the Yapping Factor Analysis! This dashboard explores how much people talk at rave events 
-    and how it relates to various aspects of the experience. The Yapping Factor combines talking frequency 
+    Welcome to the Yapping Factor Analysis! The Yapping Factor combines talking frequency 
     and duration into a single measure.
     """)
 
@@ -69,11 +68,7 @@ def app():
     )
     st.plotly_chart(fig_hist, use_container_width=True)
 
-    # Main selection for analysis type
-    # analysis_type = st.radio(
-    #     "Select primary analysis variable:",
-    #     ["Yapping Factor", "Talking Frequency", "Talking Duration"]
-    # )
+    st.subheader("Yapping Factor Breakdown")
     analysis_type = "Yapping Factor"
     # Map the selection to the corresponding column
     analysis_var_map = {
@@ -92,14 +87,14 @@ def app():
 
     # Options for secondary variable based on type
     if secondary_var_type == "Demographics":
-        secondary_var = st.selectbox(
+        secondary_var = st.radio(
             "Select demographic variable:",
             [COL_AGE, COL_GENDER, COL_ATTENDANCE, COL_EXPERIENCE]
         )
     elif secondary_var_type == "Perception of Talking":
         secondary_var = COL_TALK_PERCEPTION
     else:  # Impact of Talking
-        secondary_var = st.selectbox(
+        secondary_var = st.radio(
             "Select impact type:",
             [COL_IMPACT_EXPERIENCE, COL_IMPACT_DJ, COL_IMPACT_ATMOSPHERE]
         )
@@ -155,21 +150,19 @@ def app():
     ### Understanding the Yapping Factor Analysis
 
     1. **Yapping Factor**: 
-       - This is a measure we've created to quantify how much people talk at rave events.
+       - This is a measure created to quantify how much people talk at rave events.
        - It combines how often people talk (frequency) and how long they talk (duration).
        - The scale goes from 0 to 100.
 
     2. **Distribution Chart**: 
-       - This shows how common different Yapping Factor scores are among participants.
+       - This shows how common different Yapping Factor scores are among survey participants.
        - The x-axis shows the Yapping Factor score, and the y-axis shows how many people have that score.
 
-    3. **Analysis Charts**:
+    3. **Yapping Factor Breakdown**:
        - These show how the Yapping Factor relates to other aspects of the rave experience.
-       - You can choose what to analyze using the dropdown menus.
+       - You can choose what to analyze using the dropdown menu and radio button.
 
     4. **Your Own Yapping Factor**:
        - You can calculate your personal Yapping Factor based on how often and how long you typically talk at raves.
-       - The interpretation is just for fun - there's no "right" or "wrong" Yapping Factor!
-
-    This analysis can help event organizers and attendees understand talking behaviors at raves and how they might impact the experience.
+    
     """)

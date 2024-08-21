@@ -1,5 +1,5 @@
 import streamlit as st
-from pages import home, demographics, talking_behaviour, impact_analysis, quiet_importance, yapping_factor
+from src import home, demographics, talking_behaviour, impact_analysis, quiet_importance, yapping_factor
 
 st.set_page_config(page_title="Rave Data Analysis Dashboard", layout="wide")
 
